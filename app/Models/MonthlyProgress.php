@@ -2,22 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MonthlyProgress extends Model
 {
+    use HasFactory;
     protected $table = "monthly_progress";
 
-    protected $fillable = [
-        "kecamatan_id",
-        "month",
-        "year",
-        "capaian_kbpp",
-        "capaian_kbpp_percent",
-        "capaian_mkjp",
-        "capaian_mkjp_percent",
-    ];
+    protected $guarded = ["id"];
 
     /**
      * Get the kecamatan this monthly progress belongs to.

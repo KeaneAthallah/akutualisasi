@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Kecamatan extends Model
 {
-    protected $fillable = ["kabupaten_id", "name"];
+    use HasFactory;
+    protected $guarded = ["id"];
 
     /**
      * Get the kabupaten that owns this kecamatan.

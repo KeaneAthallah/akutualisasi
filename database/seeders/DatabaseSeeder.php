@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+// use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,11 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        \App\Models\Kabupaten::factory()
+            ->count(12)
+            ->has(
+                \App\Models\Kecamatan::factory()
+                    ->count(15)
+                    ->has(\App\Models\MonthlyProgress::factory()->count(12)),
+            )
+            ->create();
     }
 }

@@ -12,17 +12,15 @@ return new class extends Migration {
     {
         Schema::create("kecamatans", function (Blueprint $table) {
             $table->id();
+
             $table
-                ->foreignId("kecamatan_id")
+                ->foreignId("kabupaten_id")
                 ->constrained()
                 ->onDelete("cascade");
+            $table->string("name");
             $table->year("year");
             $table->integer("target_kbpp")->default(0);
-            $table->integer("capaian_kbpp")->default(0);
-            $table->decimal("capaian_kbpp_percent", 5, 2)->default(0.0);
             $table->integer("target_mkjp")->default(0);
-            $table->integer("capaian_mkjp")->default(0);
-            $table->decimal("capaian_mkjp_percent", 5, 2)->default(0.0);
             $table->timestamps();
         });
     }
