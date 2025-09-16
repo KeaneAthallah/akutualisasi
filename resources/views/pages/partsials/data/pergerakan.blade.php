@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="block text-sm font-medium">Waktu Pelaksanaan</label>
-                                    <input type="datetime-local" name="waktu_pelaksanaan"
+                                    <input type="date" name="waktu_pelaksanaan"
                                         value="{{ $pergerakanKbpp->formatted_waktu_input }}" required
                                         class="w-full border-gray-300 rounded-md">
                                 </div>
@@ -142,8 +142,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="block text-sm font-medium">Waktu Pelaksanaan</label>
-                    <input type="datetime-local" name="waktu_pelaksanaan" required
-                        class="w-full border-gray-300 rounded-md">
+                    <input type="date" name="waktu_pelaksanaan" required class="w-full border-gray-300 rounded-md">
                 </div>
                 <div class="mb-3">
                     <label class="block text-sm font-medium">Tempat</label>

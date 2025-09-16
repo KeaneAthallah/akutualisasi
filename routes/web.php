@@ -241,12 +241,12 @@ Route::get("/data-capaian", function (Request $request) {
     $totalTarget = $kecamatans->sum("target_kbpp");
     $totalTargetMkjp = $kecamatans->sum("target_mkjp");
 
-    // Get latest progress for each kecamatan using the correct table name
+    // Get latest progress for each kecamatan
     $latestProgressQuery = MonthlyProgress::with("kecamatan.kabupaten")
         ->whereIn('kecamatan_id', $kecamatans->pluck('id'))
         ->whereIn('id', function ($query) use ($kecamatans) {
             $query->selectRaw('MAX(id)')
-                ->from('monthly_progress') // Changed from 'monthly_progresses' to 'monthly_progress'
+                ->from('monthly_progress') // table name
                 ->whereIn('kecamatan_id', $kecamatans->pluck('id'))
                 ->groupBy('kecamatan_id');
         });
@@ -273,10 +273,36 @@ Route::get("/data-capaian", function (Request $request) {
 
     $monthlyProgress = $monthlyProgressQuery->get();
 
-    $monthlyData = $monthlyProgress
+    // Month order (always Jan → Dec)
+    $monthOrder = [
+        "Januari",
+        "Februari",
+        "Maret",
+        "April",
+        "Mei",
+        "Juni",
+        "Juli",
+        "Agustus",
+        "September",
+        "Oktober",
+        "November",
+        "Desember"
+    ];
+
+    // Normalize month names and group
+    $normalized = collect($monthlyProgress)
+        ->map(function ($row) {
+            $row->month = ucfirst(strtolower($row->month)); // normalize JANUARI → Januari
+            return $row;
+        })
         ->groupBy("month")
-        ->map(fn($rows) => $rows->sum("capaian_kbpp"))
-        ->toArray();
+        ->map(fn($rows) => $rows->sum("capaian_kbpp"));
+
+    // Build clean ordered dataset, no duplicates
+    $monthlyData = [];
+    foreach ($monthOrder as $month) {
+        $monthlyData[$month] = $normalized->get($month, 0);
+    }
 
     return view(
         "pages.partsials.data-capaian",

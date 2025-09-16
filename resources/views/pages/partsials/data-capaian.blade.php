@@ -20,7 +20,7 @@
                     <!-- Back Button -->
                     <button onclick="history.back()"
                         class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition">
-                        ← Back
+                        ← Kembali
                     </button>
                 </div>
             </div>
@@ -273,6 +273,26 @@
                             speed: 800
                         }
                     },
+                    tooltip: {
+                        enabled: false
+                    }, // disable tooltip
+                    states: {
+                        hover: {
+                            filter: {
+                                type: 'none'
+                            }
+                        }, // disable hover effect
+                        active: {
+                            filter: {
+                                type: 'none'
+                            }
+                        } // disable click highlight
+                    },
+                    markers: {
+                        hover: {
+                            size: 0
+                        }
+                    }, // prevent marker enlargement
                     xaxis: {
                         categories: monthlyCategories,
                         labels: {
@@ -339,6 +359,26 @@
                             speed: 800
                         }
                     },
+                    tooltip: {
+                        enabled: false
+                    }, // disable tooltip
+                    states: {
+                        hover: {
+                            filter: {
+                                type: 'none'
+                            }
+                        }, // disable hover effect
+                        active: {
+                            filter: {
+                                type: 'none'
+                            }
+                        } // disable click highlight
+                    },
+                    markers: {
+                        hover: {
+                            size: 0
+                        }
+                    }, // prevent marker enlargement
                     labels: ['Capaian', 'Sisa Target'],
                     colors: ['#3b82f6', '#f87171'],
                     plotOptions: {
@@ -386,6 +426,7 @@
             }
         });
     </script>
+
 </body>
 
 </html>

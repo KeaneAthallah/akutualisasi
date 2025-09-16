@@ -15,10 +15,10 @@
         <div class="bg-white shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="py-6 flex items-center justify-between">
-                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">Daftar Advokasi</h2>
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">Daftar Dokumen Advokasi</h2>
                     <button onclick="history.back()"
                         class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition">
-                        ← Back
+                        ← Kembali
                     </button>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                     @forelse ($items as $item)
                         <div class="bg-white border border-gray-200 rounded-xl p-6 shadow hover:shadow-lg transition">
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ $item->title }}</h3>
-                            <p class="text-sm text-gray-600 mb-4">No Surat: {{ $item->no_surat }}</p>
+                            {{-- <p class="text-sm text-gray-600 mb-4">Penandatangan: {{ $item->no_surat }}</p> --}}
                             <a href="{{ $item->file_path }}" target="_blank"
                                 class="inline-block px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition">
                                 📄 Lihat Dokumen

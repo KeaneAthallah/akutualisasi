@@ -18,7 +18,7 @@
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">Daftar KIE KBPP</h2>
                     <button onclick="history.back()"
                         class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition">
-                        ← Back
+                        ← Kembali
                     </button>
                 </div>
             </div>

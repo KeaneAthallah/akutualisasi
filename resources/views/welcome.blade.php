@@ -141,8 +141,8 @@
                             </h3>
 
                             <p class="text-gray-600 leading-relaxed text-center text-lg mb-6">
-                                Program advokasi dan sosialisasi KB Pascapersalinan untuk meningkatkan kesadaran
-                                masyarakat
+                                Lihat dokumen kebijakan serta perjanjian kerja sama sebagai dasar advokasi program KB
+                                Pascapersalinan di Sulawesi Tengah.
                             </p>
 
                             <div class="text-center">
@@ -188,7 +188,7 @@
                             </h3>
 
                             <p class="text-gray-600 leading-relaxed text-center text-lg mb-6">
-                                Komunikasi, Informasi, dan Edukasi tentang KB Pascapersalinan untuk masyarakat
+                                Akses berbagai materi KIE seputar KB Pascapersalinan sebagai bahan edukasi masyarakat.
                             </p>
 
                             <div class="text-center">
@@ -204,8 +204,7 @@
                                         Informasi Layanan
                                     </h4>
                                     <p class="text-green-700 text-lg leading-relaxed mb-6">
-                                        Program KIE (Komunikasi, Informasi, Edukasi) untuk memberikan pemahaman yang
-                                        benar tentang KB Pascapersalinan kepada masyarakat luas.
+                                        Lihat dokumentasi kegiatan terkait KB Pascapersalinan di Sulawesi Tengah.
                                     </p>
                                     <a href="/kie"
                                         class="inline-flex items-center justify-center px-8 py-4 bg-green-600 text-white font-bold rounded-2xl text-lg shadow-lg hover:bg-green-700 transition-colors">
@@ -273,28 +272,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const serviceCards = document.querySelectorAll('.service-card');
-            let activeService = '';
 
             serviceCards.forEach(card => {
                 card.addEventListener('click', function() {
-                    const serviceId = this.dataset.service;
-                    const serviceInfo = this.querySelector('.service-info');
-
-                    // Hide all other service info panels
-                    serviceCards.forEach(otherCard => {
-                        if (otherCard !== this) {
-                            otherCard.querySelector('.service-info').classList.add(
-                                'hidden');
-                        }
-                    });
-
-                    // Toggle current service info
-                    if (activeService === serviceId) {
-                        serviceInfo.classList.add('hidden');
-                        activeService = '';
-                    } else {
-                        serviceInfo.classList.remove('hidden');
-                        activeService = serviceId;
+                    const link = this.querySelector('a[href]');
+                    if (link) {
+                        window.location.href = link.getAttribute('href');
                     }
                 });
             });

@@ -26,7 +26,7 @@ class PergerakanKbpp extends Model
      */
     public function getFormattedWaktuAttribute()
     {
-        return $this->waktu_pelaksanaan->format('d/m/Y H:i');
+        return $this->waktu_pelaksanaan->format('d/m/Y');
     }
 
     /**
@@ -34,6 +34,6 @@ class PergerakanKbpp extends Model
      */
     public function getFormattedWaktuInputAttribute()
     {
-        return $this->waktu_pelaksanaan->format('Y-m-d\TH:i');
+        return $this->waktu_pelaksanaan->format('Y-m-d');
     }
 }
