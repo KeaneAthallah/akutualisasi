@@ -442,6 +442,10 @@ Route::middleware("auth")->group(function () {
     Route::resource("kabupatens", KabupatenController::class);
     Route::resource("kecamatans", KecamatanController::class);
     Route::resource("monthly-progress", MonthlyProgressController::class);
+    Route::post('/kecamatans/import', [KecamatanController::class, 'import'])
+        ->name('kecamatans.import');
+    Route::post('/monthly-progress/import', [MonthlyProgressController::class, 'import'])
+        ->name('monthly-progress.import');
 });
 
 require __DIR__ . "/auth.php";

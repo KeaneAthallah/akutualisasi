@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MonthlyProgressImport;
 use App\Models\MonthlyProgress;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MonthlyProgressController extends Controller
 {
@@ -69,5 +71,16 @@ class MonthlyProgressController extends Controller
         $monthlyProgress->delete();
 
         return redirect()->back()->with("success", "Data berhasil dihapus.");
+    }
+    public function import(Request $request)
+    {
+        $request->validate([
+            'kecamatan_id' => 'required|exists:kecamatans,id',
+            'file' => 'required|mimes:csv,txt|max:2048',
+        ]);
+
+        Excel::import(new MonthlyProgressImport($request->kecamatan_id), $request->file('file'));
+
+        return redirect()->back()->with('success', 'Data Monthly Progress berhasil diimpor!');
     }
 }

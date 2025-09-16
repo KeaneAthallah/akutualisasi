@@ -47,6 +47,27 @@
         + Tambah Data
     </button>
 </div>
+<form action="{{ route('monthly-progress.import') }}" method="POST" enctype="multipart/form-data"
+    class="mb-3 flex flex-col gap-2">
+    @csrf
+
+    <!-- Select Kecamatan -->
+    <label class="font-semibold text-gray-700">Pilih Kecamatan:</label>
+    <select name="kecamatan_id" class="border p-2 rounded" required>
+        <option value="">-- Pilih Kecamatan --</option>
+        @foreach ($kecamatans as $kecamatan)
+            <option value="{{ $kecamatan->id }}">{{ $kecamatan->name }}</option>
+        @endforeach
+    </select>
+
+    <!-- CSV File Upload -->
+    <input type="file" name="file" accept=".csv" class="border p-2 rounded" required>
+
+    <!-- Submit -->
+    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+        Import CSV
+    </button>
+</form>
 
 <div class="overflow-x-auto mb-10">
     <table class="w-full text-sm text-left text-gray-600 border border-gray-200">

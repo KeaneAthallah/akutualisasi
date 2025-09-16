@@ -2,14 +2,29 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Exports\KecamatanImport;
 use App\Models\Kecamatan;
 use App\Models\Kabupaten;
 use App\Models\MonthlyProgress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KecamatanController extends Controller
 {
+    public function import(Request $request)
+    {
+        $request->validate([
+            'kabupaten_id' => 'required|exists:kabupatens,id',
+            'file' => 'required|mimes:csv,txt|max:2048',
+        ]);
+
+        Excel::import(new KecamatanImport($request->kabupaten_id), $request->file('file'));
+
+        return redirect()->back()->with('success', 'Data Kecamatan berhasil diimpor!');
+    }
+
     public function index(Request $request)
     {
         // Filter kabupaten
